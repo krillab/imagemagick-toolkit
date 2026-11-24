@@ -34,36 +34,127 @@ ImageMagick 按明确规则处理图片；生成式补画、语义移除人物�
 
 ## 安装技能
 
-### Codex
+选择一种方式即可。**Windows x64 已内置 ImageMagick，安装完整 Skill 后无需再安装 ImageMagick。** macOS/Linux 需使用系统 ImageMagick 7，见 [运行环境安装指引](references/installation.md)。
 
-把本仓库完整内容放进一个名为 `imagemagick-toolkit` 的技能目录。按 [Codex 官方技能文档](https://developers.openai.com/codex/skills/) 使用当前版本支持的技能目录，例如：
+| 方式 | 适合谁 | 需要什么 |
+| --- | --- | --- |
+| 复制指令给 AI | 希望让 Codex / WorkBuddy 帮忙安装 | 宿主支持技能安装或文件操作 |
+| 命令行安装 | 已使用 Node.js 与 Skills CLI 的用户 | Node.js 22.20+、npm 和网络 |
+| Git 克隆 | Codex 用户、希望方便更新的用户 | Git |
+| 下载 ZIP | 不想安装 Git / Node.js，或使用 WorkBuddy | 浏览器和解压工具 |
 
-- 用户级：`~/.agents/skills/imagemagick-toolkit/`
-- 项目级：`<project>/.agents/skills/imagemagick-toolkit/`
+### 方式一：复制指令给 AI 安装
 
-也可以直接克隆到用户级技能目录：
-
-```sh
-git clone https://github.com/krillab/imagemagick-toolkit.git ~/.agents/skills/imagemagick-toolkit
-```
-
-若当前客户端使用其他已配置目录，以客户端说明为准。安装后在新会话中确认技能可见，可使用：
+把下面整段复制到 Codex、WorkBuddy 或支持安装 Skill 的代理中：
 
 ```text
-使用 $imagemagick-toolkit，把这些 PNG 转为 WebP，保留原图。
+请从 https://github.com/krillab/imagemagick-toolkit 安装 imagemagick-toolkit 技能。
+请保留完整的 SKILL.md、scripts、references、vendor 和许可证文件，
+安装到当前工具支持的技能目录中。
+在 Windows x64 上使用技能内置的 ImageMagick，不修改系统 PATH；
+安装后检查技能是否可见，并运行 doctor 验证。
 ```
 
-### WorkBuddy
+这是一段交给代理执行的安装请求，不是所有工具通用的内置命令；具体安装由宿主支持的能力完成。Codex 也可明确调用内置安装器：
 
-在“专家·技能·连接器 → 技能 → 添加技能 → 上传技能”中，导入含完整技能文件的 ZIP。[官方操作说明](https://www.codebuddy.cn/docs/workbuddy/From-Beginner-to-Expert-Guide/Function-Description/Skills-Market)
+```text
+$skill-installer 请安装 https://github.com/krillab/imagemagick-toolkit 中的 imagemagick-toolkit 技能，保留完整运行文件。
+```
 
-包的结构应为 `imagemagick-toolkit/SKILL.md`，并同时包含 scripts、references、vendor。导入后确认 vendor 中的 EXE 没有被过滤，再试运行 doctor。上传大小、二进制文件处理及审核以实际客户端为准；本项目不保证所有版本都允许该运行包。
+### 方式二：命令行安装
 
-本仓库提供通用技能，不包含 WorkBuddy 市场发布者身份。若要提交其开放平台市场，按 [开放平台文档](https://open.workbuddy.cn/en/docs/skill) 补充真实作者、版本、中英文展示信息等市场字段；不能把本地导入当成已通过市场审核。
+参考 [Vercel Skills CLI](https://github.com/vercel-labs/skills) 的常见安装方式，复制到终端：
 
-### 其他代理
+```sh
+npx skills add krillab/imagemagick-toolkit
+```
 
-导入完整技能目录，并让代理读取 SKILL.md。核心不依赖 Codex 专属 API，agents/openai.yaml 仅提供 Codex 展示信息；代理仍需支持命令执行。若只支持提示词而不能执行本地程序，只能提供用法解释和命令。
+按照提示选择技能和目标代理。默认安装到当前项目；添加 `-g` 安装到用户级。指定安装到 Codex 用户级：
+
+```sh
+npx skills add krillab/imagemagick-toolkit --skill imagemagick-toolkit -a codex -g
+```
+
+Node.js / npm 仅用于这种安装方式，运行本技能不需要它们。以上参数按 CLI 官方文档提供，尚未在本项目逐一实测；安装后检查 vendor 中的运行文件。WorkBuddy 建议采用下面的 ZIP 导入方式，不把 Skills CLI 的 CodeBuddy 选项当作 WorkBuddy 支持保证。
+
+### 方式三：Git 克隆到 Codex
+
+**Windows PowerShell，安装到用户级：**
+
+```powershell
+$skillParent = Join-Path $env:USERPROFILE '.agents/skills'
+New-Item -ItemType Directory -Path $skillParent -Force | Out-Null
+git clone https://github.com/krillab/imagemagick-toolkit.git (Join-Path $skillParent 'imagemagick-toolkit')
+```
+
+**macOS / Linux，安装到用户级：**
+
+```sh
+mkdir -p "$HOME/.agents/skills"
+git clone https://github.com/krillab/imagemagick-toolkit.git "$HOME/.agents/skills/imagemagick-toolkit"
+```
+
+如只想用于某个项目，把完整技能放到 `<project>/.agents/skills/imagemagick-toolkit/`。[Codex 官方技能目录说明](https://developers.openai.com/codex/skills/)
+
+目标目录已存在时不要重复克隆。对于用 Git 克隆的安装，后续可以在技能目录执行 `git pull --ff-only` 更新；有本地修改时先自行保留修改。
+
+### 方式四：下载 ZIP 安装
+
+**[点击下载完整源码 ZIP](https://github.com/krillab/imagemagick-toolkit/archive/refs/heads/main.zip)**，也可以在仓库首页点击 **Code → Download ZIP**。下载包包含 Windows 便携运行文件；无需单独下载 ImageMagick。
+
+**Codex 手动安装：**
+
+1. 解压下载的 ZIP，将 `imagemagick-toolkit-main` 文件夹重命名为 `imagemagick-toolkit`。
+2. 将整个文件夹复制到用户级技能目录，或放到项目的 `.agents/skills/` 中。
+3. 确认最终结构是 `技能目录/imagemagick-toolkit/SKILL.md`，而不是多嵌套一层文件夹。
+4. 保留 scripts、references、vendor 等内容，不要只复制 SKILL.md。
+
+常见用户级目录：
+
+| 系统 | Codex 技能目录 |
+| --- | --- |
+| Windows | `%USERPROFILE%\.agents\skills\imagemagick-toolkit\` |
+| macOS / Linux | `~/.agents/skills/imagemagick-toolkit/` |
+
+若客户端使用其他已配置目录，以客户端说明为准。
+
+**WorkBuddy 导入安装：**
+
+1. 下载并解压上述 ZIP，将顶层文件夹重命名为 `imagemagick-toolkit`。
+2. 将这个完整文件夹重新压缩为 `imagemagick-toolkit.zip`，确保包内结构为 `imagemagick-toolkit/SKILL.md`，同时保留 scripts、references、vendor 等目录。
+3. 在 WorkBuddy 中打开 **专家·技能·连接器 → 技能 → 添加技能 → 上传技能**，选择这个 ZIP。
+4. 安装后在“已安装”中确认技能启用，并让 WorkBuddy 运行一次内置 doctor。
+
+客户端入口以 [WorkBuddy 官方说明](https://www.codebuddy.cn/docs/workbuddy/From-Beginner-to-Expert-Guide/Function-Description/Skills-Market) 为准。上传大小及二进制文件处理由实际客户端决定；若 EXE 被过滤或执行受限，需按客户端支持的方式配置运行环境。
+
+本仓库提供通用技能，不包含 WorkBuddy 市场发布者身份。若向开放平台市场提交，按 [市场发布规范](https://open.workbuddy.cn/en/docs/skill) 补充真实发布者与展示信息；本地导入不等于已通过市场审核。
+
+### 安装后验证
+
+Codex 可在新对话中输入：
+
+```text
+使用 $imagemagick-toolkit 检查内置 ImageMagick 是否可用。
+```
+
+WorkBuddy 或其他代理可输入：
+
+```text
+使用 imagemagick-toolkit 技能检查 ImageMagick 是否可用，再介绍几个基本功能。
+```
+
+Windows 上也可手动验证（下例适用于克隆或手动复制到 Codex 用户级目录）：
+
+```powershell
+$skill = Join-Path $env:USERPROFILE '.agents/skills/imagemagick-toolkit'
+Test-Path (Join-Path $skill 'SKILL.md')
+Test-Path (Join-Path $skill 'vendor/imagemagick/windows-x64/magick.exe')
+& "$skill/scripts/doctor.ps1"
+```
+
+正常情况下显示内置程序路径和 ImageMagick 7 的版本信息。技能没有出现时先检查文件夹层级、目录是否被客户端扫描及技能是否启用，再新建会话或重启客户端。Skills CLI 可能使用符号链接，以其输出的实际安装位置为准。
+
+安装成功后就可以直接描述图片处理需求，示例见下文。其他代理同样需要读取完整技能目录，并具备文件访问和本地命令执行能力。
 
 ## 快速使用
 
