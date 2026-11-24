@@ -1,0 +1,3 @@
+interface:
+  display_name: "ImageMagick Toolkit"
+  short_description: "ImageMagick 安装、使用与批量图片处理，内置 Windows 便携版"

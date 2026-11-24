@@ -1,0 +1,98 @@
+{
+  "version": "7.1.2-35",
+  "platform": "windows-x64",
+  "variant": "Q16-HDRI portable",
+  "source_archive": "ImageMagick-7.1.2-35-portable-Q16-HDRI-x64.7z",
+  "source_size": 12117825,
+  "source_sha256": "34db4364da26c88d6b8cc5bbc1fff22b85d00d3b399c82fe85ee4790efacbbf1",
+  "source_provenance": "User-supplied archive; upstream authenticity not independently verified",
+  "upstream_downloads": "https://imagemagick.org/download/",
+  "packaging": "Unmodified retained files; standalone command executables and upstream ChangeLog omitted; use magick subcommands",
+  "original_executable_sha256": {
+    "compare": "754058a18ac5ee27b7384a67f97016df12f517ab13d521d07bc1a9b0ae88255f",
+    "composite": "3efdcd5c194dc6fd0067e87e6f95c5945e76e364ab948a734b3775e7fbbef146",
+    "conjure": "6cb8ed36dfc33e14060117bb026ac6d0a753285fd2a54135a2a4b60b45dad38d",
+    "identify": "4419a32a9c56a12c15904533d79cf045841c5e4aa3638113adab8c53f2509ce5",
+    "magick": "7521696162629ee27e6e4c68ca3884a5cbd7d17d760a2a0efc9a001470e5b822",
+    "mogrify": "56ebcb0f22509a5d7f79943108822d96fc373c5bcc05a68a1398b5f3442b1327",
+    "montage": "fb467b80515a55c7e269596c3c0f9f9725625c89d0cefa89d06ec385c8c3fce5",
+    "stream": "090ba3d61ca3d992e8dc62c2ba0d8227fe75495af8e542d246d4e6acc19b1d36"
+  },
+  "files": [
+    {
+      "path": "vendor/imagemagick/windows-x64/colors.xml",
+      "size": 1411,
+      "sha256": "37b986dc355641021434859f77b5e1f30b21670c847706ee9b77418e0874dfa6"
+    },
+    {
+      "path": "vendor/imagemagick/windows-x64/configure.xml",
+      "size": 1169,
+      "sha256": "87f846bc5bfd4b72c2bbda37d58ee5db24f4ea3699da679c64fd1fa739e2ae86"
+    },
+    {
+      "path": "vendor/imagemagick/windows-x64/delegates.xml",
+      "size": 10004,
+      "sha256": "d6447b0e9c748690b63717d7942987f854b021761613fcb212f6148c8a63d665"
+    },
+    {
+      "path": "vendor/imagemagick/windows-x64/english.xml",
+      "size": 54885,
+      "sha256": "d24898b7f43eff80dfee3343a7693edcbc6920eec0b07991bd47a6674e85eb48"
+    },
+    {
+      "path": "vendor/imagemagick/windows-x64/LICENSE.txt",
+      "size": 12663,
+      "sha256": "5ffcbc771d4cc2827ca8c4505f6b5b61e0bc1d933e0f41a47eea16ed06db4f90"
+    },
+    {
+      "path": "vendor/imagemagick/windows-x64/locale.xml",
+      "size": 2509,
+      "sha256": "9a22865c9ba728a88aeea2bd64d238e39886ec1a87d791353e9266a3198ab296"
+    },
+    {
+      "path": "vendor/imagemagick/windows-x64/log.xml",
+      "size": 1701,
+      "sha256": "c246daab249adda19a7754fe8769e6ef08a7d0b5c8ce4742a036593a6e47ea17"
+    },
+    {
+      "path": "vendor/imagemagick/windows-x64/magick.exe",
+      "size": 32395952,
+      "sha256": "7521696162629ee27e6e4c68ca3884a5cbd7d17d760a2a0efc9a001470e5b822"
+    },
+    {
+      "path": "vendor/imagemagick/windows-x64/mime.xml",
+      "size": 136869,
+      "sha256": "e7ca58e71b1e30cf2d18453e3fce2e266e3c85a090253f6d5a1d2ed2011b1c81"
+    },
+    {
+      "path": "vendor/imagemagick/windows-x64/NOTICE.txt",
+      "size": 431049,
+      "sha256": "071138ece01928a65983b7273e0022ed73b814097daaf10ba373f4fb4e4387a7"
+    },
+    {
+      "path": "vendor/imagemagick/windows-x64/policy.xml",
+      "size": 8363,
+      "sha256": "690864d5fa289d4a3fc18d6962dcad006eabf3f9fc79b5335ad417fb38702a70"
+    },
+    {
+      "path": "vendor/imagemagick/windows-x64/sRGB.icc",
+      "size": 60960,
+      "sha256": "83174717332326ddc198d9df188a4daec27b8979ba152cebbfc470c793d0bb11"
+    },
+    {
+      "path": "vendor/imagemagick/windows-x64/thresholds.xml",
+      "size": 11788,
+      "sha256": "068487187c65f8ba9963ee0d73b31261cde9cd255bf879edcb093241e1c6a36b"
+    },
+    {
+      "path": "vendor/imagemagick/windows-x64/type-ghostscript.xml",
+      "size": 9470,
+      "sha256": "8cdd0a89929342e438d90b4b95b4417fc90737858cefc9161f454e0f7e1435b4"
+    },
+    {
+      "path": "vendor/imagemagick/windows-x64/type.xml",
+      "size": 691,
+      "sha256": "ba4160241fb0fff29563b40430b24f5d993cd5f1e423f85ee99c17749901c8ad"
+    }
+  ]
+}
